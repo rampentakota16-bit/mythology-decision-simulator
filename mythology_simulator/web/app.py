@@ -11,7 +11,7 @@ from mythology_simulator.core.engine import map_average_to_character
 from mythology_simulator.reports.analysis import generate_analytical_report
 
 app = Flask(__name__)
-app.secret_key = "dev_secret_key_change_later"
+app.secret_key = "mythology-secret-key"
 
 
 @app.route("/", methods=["GET"])
@@ -23,12 +23,10 @@ def home():
 
 @app.route("/start", methods=["GET"])
 def start_quiz():
-    session["current_index"] = 0
-    session["responses"] = []
-    return jsonify({
-        "message": "Quiz started",
-        "total_questions": len(QUESTIONS)
-    })
+    return {
+        "status": "ok",
+        "message": "start reached"
+    }
 
 
 @app.route("/question", methods=["GET"])
@@ -137,4 +135,5 @@ def generate_report():
 
 if __name__ == "__main__":
     app.run()
+
 
